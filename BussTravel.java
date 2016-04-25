@@ -17,11 +17,29 @@ public class BussTravel {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int [][] bus = new int [11][4];
+        int [][] busSi = new int [11][4];
+        int [][] busSv = new int [11][4];
+        int [][] busCi = new int [11][4];
+        int [][] busCv = new int [11][4];
+        int [][] busVi = new int [11][4];
+        int [][] busVv = new int [11][4];
         do{
-            System.out.println("Ingrese opcion");
-            opc(leerNumero(),bus);
-        }while(leerNumero()!=2);
+            tipo();
+            iIV(leerNumero(),busSi,busSv);
+        }while(leerNumero()!=3);
+        System.out.println("_________________________");
+        mostrar(busSi);
+        System.out.println("_________________________");
+        mostrar(busSv);
+        System.out.println("_________________________");
+        mostrar(busCi);
+        System.out.println("_________________________");
+        mostrar(busCv);
+        System.out.println("_________________________");
+        mostrar(busVi);
+        System.out.println("_________________________");
+        mostrar(busVv);
+        
     }
     public static int leerNumero(){
         int n;
@@ -51,12 +69,14 @@ public class BussTravel {
     public static void destino(){
         System.out.println("Ingrese destino");
         System.out.println("1) Santiago");
-        System.out.println("2) Valdivia");
-        System.out.println("3) Concepción");
+        System.out.println("2) Concepcion");
+        System.out.println("3) Valdivia");
     }
     public static void tipo(){
+        System.out.println("Ingrese tipo de pasaje");
         System.out.println("1) Ida");
         System.out.println("2) Ida y vuelta");
+        System.out.println("3) Salir");
     }
     public static void tarifa(){
         System.out.println("Ingrese tarifa");
@@ -94,7 +114,7 @@ public class BussTravel {
         }else
             return false;
     }
-    public static void opc(int opc, int[][] bus){
+    public static void CyR(int opc, int[][] bus){
         int asiento;
         switch(opc){
             case 1:
@@ -104,6 +124,7 @@ public class BussTravel {
                     System.out.println("Comprado");
                 }else if(comprado(bus,asiento(asiento))==false){
                 pasajeC(bus,asiento(asiento));
+                mostrar(pasajeC(bus,asiento(asiento)));
                 }
                 break;
             case 2:
@@ -113,8 +134,49 @@ public class BussTravel {
                     System.out.println("Reservado");
                 }else if(comprado(bus,asiento(asiento))==false){
                 pasajeR(bus,asiento(asiento));
+                mostrar(pasajeC(bus,asiento(asiento)));
                 }
                 break;
+            case 3:
+                break;
+            default:
+                System.out.println("Opcion no valida");
+        }
+    }
+    public static void destinos(int opc, int [][] busSi, int [][]busSv, int [][] busCi, int [][]busCv, int [][] busVi, int [][]busVv){
+        switch(opc){
+            case 1:
+                tipo();
+                iIV(leerNumero(),busSi,busSv);
+                break;
+            case 2:
+                tipo();
+                iIV(leerNumero(),busCi,busCv);
+                break;
+            case 3:
+                tipo();
+                iIV(leerNumero(),busVi,busVv);
+                break;
+            case 4:
+                break;
+            default: System.out.println("Opcion no valida");
+        }
+    }
+    public static void iIV(int opc, int [][] busi, int [][]busv){
+        switch(opc){
+            case 1:
+                comprar();
+                CyR(leerNumero(),busi);
+                break;
+            case 2:
+                comprar();
+                CyR(leerNumero(),busi);
+                comprar();
+                CyR(leerNumero(),busv);
+                break;
+            case 3:
+                break;
+            default: System.out.println("opcion no valida");
         }
     }
 }
