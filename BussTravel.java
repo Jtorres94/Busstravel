@@ -24,9 +24,9 @@ public class BussTravel {
         int [][] busVi = new int [11][4];
         int [][] busVv = new int [11][4];
         do{
-            tipo();
-            iIV(leerNumero(),busSi,busSv);
-        }while(leerNumero()!=3);
+            destino();
+            destinos(leerNumero(),busSi,busSv,busCi,busCv,busVi,busVv);
+        }while(leerNumero()!=4);
         System.out.println("_________________________");
         mostrar(busSi);
         System.out.println("_________________________");
@@ -71,6 +71,7 @@ public class BussTravel {
         System.out.println("1) Santiago");
         System.out.println("2) Concepcion");
         System.out.println("3) Valdivia");
+        System.out.println("4) Salir");
     }
     public static void tipo(){
         System.out.println("Ingrese tipo de pasaje");
@@ -124,7 +125,6 @@ public class BussTravel {
                     System.out.println("Comprado");
                 }else if(comprado(bus,asiento(asiento))==false){
                 pasajeC(bus,asiento(asiento));
-                mostrar(pasajeC(bus,asiento(asiento)));
                 }
                 break;
             case 2:
@@ -134,7 +134,48 @@ public class BussTravel {
                     System.out.println("Reservado");
                 }else if(comprado(bus,asiento(asiento))==false){
                 pasajeR(bus,asiento(asiento));
-                mostrar(pasajeC(bus,asiento(asiento)));
+                }
+                break;
+            case 3:
+                break;
+            default:
+                System.out.println("Opcion no valida");
+        }
+    }
+    public static void CyRIV(int opc, int[][] bus, int[][] busv){
+        int asiento,asientov;
+        switch(opc){
+            case 1:
+                System.out.println("Ingrese asiento ida");
+                asiento=leerNumero();
+                if(comprado(bus,asiento(asiento))==true){
+                    System.out.println("Comprado");
+                }else if(comprado(bus,asiento(asiento))==false){
+                pasajeC(bus,asiento(asiento));
+                }
+                 System.out.println("Ingrese asiento vuelta");
+                asientov=leerNumero();
+                if(comprado(busv,asiento(asientov))==true){
+                    System.out.println("Comprado");
+                }else if(comprado(busv,asiento(asientov))==false){
+                pasajeC(busv,asiento(asientov));
+                }
+                break;
+                
+            case 2:
+                System.out.println("Ingrese asiento ida");
+                asiento=leerNumero();
+                if(reservado(bus,asiento(asiento))==true){
+                    System.out.println("Reservado");
+                }else if(comprado(bus,asiento(asiento))==false){
+                pasajeR(bus,asiento(asiento));
+                }
+                System.out.println("Ingrese asiento vuelta");
+                asientov=leerNumero();
+                if(reservado(busv,asiento(asientov))==true){
+                    System.out.println("Reservado");
+                }else if(comprado(busv,asiento(asientov))==false){
+                pasajeR(busv,asiento(asientov));
                 }
                 break;
             case 3:
@@ -170,9 +211,7 @@ public class BussTravel {
                 break;
             case 2:
                 comprar();
-                CyR(leerNumero(),busi);
-                comprar();
-                CyR(leerNumero(),busv);
+                CyRIV(leerNumero(),busi,busv);
                 break;
             case 3:
                 break;
