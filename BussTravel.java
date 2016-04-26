@@ -26,18 +26,21 @@ public class BussTravel {
         do{
             destino();
             destinos(numero(leerNumero()),busSi,busSv,busCi,busCv,busVi,busVv);
+            
         }while(numero(leerNumero())!=4);
-        System.out.println("_________________________");
+        System.out.println("Cantidad de pasajes: "+suma(contador(busSi),contador(busCi),contador(busVi),contador(busSv),contador(busCv),contador(busVv)));
+        System.out.println("El total es: "+total(suma(contador(busSi),contador(busCi),contador(busVi),contador(busSv),contador(busCv),contador(busVv))));
+        System.out.println("Bus Ida santiago");
         mostrar(busSi);
-        System.out.println("_________________________");
+        System.out.println("Bus vuelta Santiago");
         mostrar(busSv);
-        System.out.println("_________________________");
+        System.out.println("Bus ida Concepcion");
         mostrar(busCi);
-        System.out.println("_________________________");
+        System.out.println("Bus vuelta Concepcion");
         mostrar(busCv);
-        System.out.println("_________________________");
+        System.out.println("Bus ida Valdivia");
         mostrar(busVi);
-        System.out.println("_________________________");
+        System.out.println("Bus vuelta Valdivia");
         mostrar(busVv);
         
     }
@@ -46,10 +49,6 @@ public class BussTravel {
         Scanner leer = new Scanner(System.in);
         n=leer.nextLine();
         return n;
-    }
-    public static int [][] bus(){
-        int [][] matriz = new int [11][4];
-        return matriz;
     }
     public static void mostrar(int [][]matriz){
       int i,j;
@@ -228,4 +227,25 @@ public class BussTravel {
                 System.out.println("Ingrese un numero");
                 return 0;
         }
+     public static int contador(int[][]bus){
+         int i,j,cont=0;
+      for ( i=0; i < bus.length; i++) {
+      for ( j=0; j < bus[i].length; j++) {
+          if(bus[i][j]==1 || bus[i][j]==2){
+              cont++;
+          }
+      }
+      }
+         return cont;
+     }
+     public static int suma(int n1, int n2, int n3, int n4,int n5, int n6){
+         int resultado;
+         resultado=n1+n2+n3+n4+n5+n6;
+         return resultado;
+     }
+     public static int total(int suma){
+         int resultado;
+         resultado = suma*5000;
+         return resultado;
+     }
 }
